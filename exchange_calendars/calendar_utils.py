@@ -237,7 +237,7 @@ class ExchangeCalendarDispatcher(object):
                                 if name not in self._factory_output_cache:
                                     self._factory_output_cache[name] = (calendar, kwargs)
                                 return calendar
-                    except:
+                    except Exception:
                         return None
 
         return None
@@ -288,7 +288,7 @@ class ExchangeCalendarDispatcher(object):
                 break_start or break_end as trading minutes.
 
         cache : default: False
-            Whether to save calendars in your user cache folder. Reduces run 
+            Whether to save calendars in your user cache folder. Reduces run
             time of multiple script executions.
 
         Returns
