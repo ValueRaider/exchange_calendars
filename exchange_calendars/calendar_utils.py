@@ -61,7 +61,9 @@ from .exchange_calendar_xwbo import XWBOExchangeCalendar
 from .us_futures_calendar import QuantopianUSFuturesCalendar
 from .weekday_calendar import WeekdayCalendar
 
-import appdirs, os, pickle
+import appdirs
+import os
+import pickle
 import datetime as _dt
 
 _default_calendar_factories = {
@@ -179,7 +181,7 @@ class ExchangeCalendarDispatcher(object):
         self._factory_output_cache: dict(str, tuple(ExchangeCalendar, dict)) = {}
 
     def _get_cal_cache_fp(self, name):
-        cache_fn = "calendar-"+name+".pkl"
+        cache_fn = "calendar-" + name + ".pkl"
         cache_dp = os.path.join(appdirs.user_cache_dir(), "py-exchange_calendars")
         return os.path.join(cache_dp, cache_fn)
 
@@ -224,17 +226,16 @@ class ExchangeCalendarDispatcher(object):
         if os.path.isfile(cache_fp):
             moddt = _dt.datetime.fromtimestamp(os.path.getmtime(cache_fp))
             # Additional condition that file created in last 24 hours
-            if (_dt.datetime.now()-moddt) < _dt.timedelta(days=1):
+            if (_dt.datetime.now() - moddt) < _dt.timedelta(days=1):
                 with open(cache_fp, 'rb') as f:
                     pkl_data = pickle.load(f)
                     if pkl_data["kwargs"] == kwargs:
                         calendar = pkl_data["calendar"]
-                        if not name in self._factory_output_cache:
+                        if name not in self._factory_output_cache:
                             self._factory_output_cache[name] = (calendar, kwargs)
                         return calendar
 
         return None
-
 
     def get_calendar(
         self,
