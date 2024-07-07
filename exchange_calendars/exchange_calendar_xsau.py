@@ -15,7 +15,7 @@ NationalDayOfSaudiArabia = Holiday("National Day of Saudi Arabia", month=9, day=
 # https://www.saudiexchange.sa/wps/portal/saudiexchange/about-saudi-exchange/exchange-media-centre/saudi-exchange-holiday-calendar?locale=en
 EidAlAdhaHoliday = pd.to_datetime(np.concatenate(
     [
-        pd.date_range('2024-06-13', '2024-06-23'),
+        pd.date_range('2024-06-14', '2024-06-22'),
         pd.date_range('2023-06-27', '2023-07-02'),
         pd.date_range('2022-07-07', '2022-07-13'),
         pd.date_range('2021-07-16', '2021-07-22')
